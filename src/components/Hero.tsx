@@ -15,19 +15,19 @@ const Hero = () => {
   const cloudProviders = [
     {
       name: 'AWS',
-      image: '/static/awshero.png',
+      image: '/public/static/awshero.png',
       description: 'Amazon Web Services infrastructure solutions',
       tag: 'Enterprise Ready'
     },
     {
       name: 'Azure',
-      image: '/static/azurehero.png',
+      image: '/public/static/azurehero.png',
       description: 'Microsoft Azure cloud solutions',
       tag: 'High Performance'
     },
     {
       name: 'GCP',
-      image: '/lovable-uploads/64866039-0e79-4c05-ae39-ed7f7e4f261a.png',
+      image: '/public/static/gcphero.png',
       description: 'Google Cloud Platform expertise',
       tag: 'Scalable'
     }
@@ -93,12 +93,14 @@ const Hero = () => {
                           <CardContent className="p-0">
                             <AspectRatio ratio={16/9} className="rounded-lg overflow-hidden bg-sphere-navy/50">
                               <img 
-                                src={provider.image} 
+                                src={provider.name === 'AWS' ? 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=1600&q=80' : 
+                                     provider.name === 'Azure' ? 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80' : 
+                                     'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1600&q=80'}
                                 alt={`${provider.name} Cloud Infrastructure`} 
                                 className="w-full h-full object-cover"
                                 onError={(e) => {
                                   console.error(`Error loading image: ${provider.image}`);
-                                  e.currentTarget.src = 'https://via.placeholder.com/640x360?text=Image+Not+Found';
+                                  e.currentTarget.src = 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1600&q=80';
                                 }}
                               />
                             </AspectRatio>
