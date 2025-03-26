@@ -15,19 +15,19 @@ const Hero = () => {
   const cloudProviders = [
     {
       name: 'AWS',
-      image: '/lovable-uploads/7d829c18-e026-4d8a-bbf0-cf5a1580211e.png',
+      image: '../static/awshero.png',
       description: 'Amazon Web Services infrastructure solutions',
       tag: 'Enterprise Ready'
     },
     {
       name: 'Azure',
-      image: '/lovable-uploads/f9798584-3d61-44f1-b4d1-e7a2aa6ebf0f.png',
+      image: '../static/azurehero.png',
       description: 'Microsoft Azure cloud solutions',
       tag: 'High Performance'
     },
     {
       name: 'GCP',
-      image: '/lovable-uploads/7fca7eb2-ef48-4507-a831-ca211408519c.png',
+      image: '../static/gcphero.png',
       description: 'Google Cloud Platform expertise',
       tag: 'Scalable'
     }
