@@ -3,34 +3,29 @@ import React, { useEffect, useRef, useState } from 'react';
 
 const projects = [
   {
-    title: "On-Premises to AWS Cloud Migration",
-    description: "Migrated a high-traffic e-commerce platform from on-premises data centers to AWS, implementing auto-scaling architecture and reducing infrastructure costs by 35%.",
+    title: "On-Premises to AWS and Azure Cloud Migration",
+    description: "Migrated a high-traffic e-commerce platform from on-premises data centers to AWS and Azure, implementing auto-scaling architecture and reducing infrastructure costs by 35%.",
     category: "Cloud Migration",
-    image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2600&q=80"
+    image: "https://www.saviantconsulting.com/images/blog/multi-cloud-architecture.jpg"
   },
   {
     title: "Connection PC CI/CD Pipeline",
     description: "Designed and implemented a secure CI/CD pipeline for Connection PC using Docker containers and Azure DevOps, reducing deployment time from days to minutes.",
     category: "DevOps Implementation",
-    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1350&q=80"
+    image: "https://microsoft365dsc.com/Images/ManageUsingDevOps.png"
   },
-  {
-    title: "Healthcare Data Platform",
-    description: "Built a HIPAA-compliant data analytics platform on Azure with robust security controls and automated compliance checks.",
-    category: "Secure Infrastructure",
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1350&q=80"
-  },
+
   {
     title: "Multi-Region Kubernetes Cluster",
     description: "Designed and deployed a fault-tolerant Kubernetes cluster across multiple AWS regions using EKS, ensuring high availability for a global SaaS provider.",
     category: "Container Orchestration",
-    image: "https://images.unsplash.com/photo-1523712999610-f77fbcfc3843?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1350&q=80"
+    image: "https://miro.medium.com/v2/resize:fit:1400/1*dEzJuYr8b3-zRwRVGUUNVQ.png"
   },
   {
     title: "Infrastructure as Code Implementation",
     description: "Developed complete infrastructure as code solutions using Terraform and CloudFormation, enabling consistent, version-controlled deployment across multiple environments.",
     category: "IAC",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1350&q=80"
+    image: "https://parallelstaff.com/wp-content/uploads/2023/12/terraform-1.png"
   }
 ];
 

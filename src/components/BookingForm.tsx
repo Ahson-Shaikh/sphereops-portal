@@ -1,7 +1,8 @@
-
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { CalendarIcon, Clock, Info } from 'lucide-react';
 import { toast } from 'sonner';
+import emailjs from '@emailjs/browser';
+import { EMAILJS_CONFIG } from '@/lib/emailjs';
 
 const timeSlots = [
   '9:00 AM', '10:00 AM', '11:00 AM', 
@@ -16,22 +17,38 @@ const BookingForm = () => {
   const [time, setTime] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     
-    // Simulate API call
-    setTimeout(() => {
-      toast.success('Consultation request submitted successfully! We\'ll contact you shortly.');
-      setName('');
-      setEmail('');
-      setCompany('');
-      setDate('');
-      setTime('');
-      setMessage('');
-      setLoading(false);
-    }, 1500);
+    if (formRef.current) {
+      // Send email using EmailJS
+      emailjs.sendForm(
+        EMAILJS_CONFIG.serviceId,
+        EMAILJS_CONFIG.templateId,
+        formRef.current,
+        undefined // Public key is already initialized in the initEmailJS function
+      )
+        .then((result) => {
+          console.log('Email successfully sent!', result.text);
+          toast.success('Consultation request submitted successfully! We\'ll contact you shortly.');
+          setName('');
+          setEmail('');
+          setCompany('');
+          setDate('');
+          setTime('');
+          setMessage('');
+        })
+        .catch((error) => {
+          console.error('Failed to send email:', error.text);
+          toast.error('Something went wrong. Please try again or contact us directly.');
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   };
 
   return (
@@ -64,7 +81,7 @@ const BookingForm = () => {
                     <h3 className="text-lg font-medium text-sphere-navy">Ahson Shaikh</h3>
                     <p className="text-sphere-gray text-sm">Founder & Lead DevOps Consultant</p>
                     <p className="text-sphere-gray text-sm mt-2">
-                      With over a decade of experience in cloud infrastructure and DevOps practices, 
+                      With over a 5 years of experience in cloud infrastructure and DevOps practices, 
                       Ahson has helped businesses across industries optimize their tech operations.
                     </p>
                   </div>
@@ -98,12 +115,13 @@ const BookingForm = () => {
             
             <div className="bg-white shadow-lg rounded-xl p-6 md:p-8">
               <h3 className="text-xl font-semibold text-sphere-navy mb-6">Request Your Consultation</h3>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-sphere-navy mb-1">Full Name</label>
                   <input
                     type="text"
                     id="name"
+                    name="name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sphere-accent"
@@ -117,6 +135,7 @@ const BookingForm = () => {
                   <input
                     type="email"
                     id="email"
+                    name="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sphere-accent"
@@ -130,6 +149,7 @@ const BookingForm = () => {
                   <input
                     type="text"
                     id="company"
+                    name="company"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sphere-accent"
@@ -144,6 +164,7 @@ const BookingForm = () => {
                     <input
                       type="date"
                       id="date"
+                      name="date"
                       value={date}
                       onChange={(e) => setDate(e.target.value)}
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sphere-accent"
@@ -155,6 +176,7 @@ const BookingForm = () => {
                     <label htmlFor="time" className="block text-sm font-medium text-sphere-navy mb-1">Preferred Time</label>
                     <select
                       id="time"
+                      name="time"
                       value={time}
                       onChange={(e) => setTime(e.target.value)}
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sphere-accent"
@@ -172,6 +194,7 @@ const BookingForm = () => {
                   <label htmlFor="message" className="block text-sm font-medium text-sphere-navy mb-1">Brief Description of Your Needs</label>
                   <textarea
                     id="message"
+                    name="message"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sphere-accent"
@@ -179,6 +202,9 @@ const BookingForm = () => {
                     rows={4}
                   ></textarea>
                 </div>
+                
+                <input type="hidden" name="to_email" value="contact@sphereops.org" />
+                <input type="hidden" name="subject" value="Consultation Request from SphereOps Website" />
                 
                 <button
                   type="submit"

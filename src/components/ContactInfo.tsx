@@ -6,19 +6,19 @@ const contacts = [
   {
     icon: Mail,
     title: "Email Us",
-    details: "contact@sphereops.com",
-    link: "mailto:contact@sphereops.com"
+    details: "contact@sphereops.org",
+    link: "mailto:contact@sphereops.org"
   },
   {
     icon: Phone,
     title: "Call Us",
-    details: "+1 (555) 123-4567",
-    link: "tel:+15551234567"
+    details: "+92-(343)-4020517",
+    link: "tel:+923434020517"
   },
   {
     icon: MapPin,
-    title: "Visit Us",
-    details: "123 Tech Avenue, San Francisco, CA 94107",
+    title: "Meet Us",
+    details: "Remotely",
     link: "#"
   },
   {

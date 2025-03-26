@@ -92,7 +92,7 @@ const Hero = () => {
                               <img 
                                 src={
                                   provider.name === 'AWS' 
-                                    ? '/lovable-uploads/e5ecaba3-dd99-4ed9-817f-3e5f4d1e4a94.png' 
+                                    ? 'https://wallpapers.com/images/hd/amazon-background-qmgdstx8t37z579o.jpg' 
                                     : provider.name === 'Azure' 
                                     ? 'https://azure.microsoft.com/svghandler/azure?width=600&height=315' 
                                     : 'https://cloud.google.com/_static/cloud/images/social-icon-google-cloud-1200-630.png'

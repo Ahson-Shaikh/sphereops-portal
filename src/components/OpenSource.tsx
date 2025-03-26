@@ -7,40 +7,31 @@ import { Button } from '@/components/ui/button';
 
 const OpenSourceProjects = [
   {
-    name: "SphereOps CLI",
-    description: "A command-line tool for automating DevOps workflows and infrastructure management across multiple cloud providers.",
-    tags: ["Go", "CLI", "Multi-cloud"],
-    stars: 576,
-    forks: 89,
+    name: "AutoSec-AI",
+    description: "A web based tool for scanning your code and generating pdf reports based on industry standards vulnerabilities found. Integrations with Ollama, OpenAI, and more.",
+    tags: ["TypeScript", "React", "Next.js"],
+    stars: 2,
+    forks: 1,
     url: "#",
-    githubUrl: "#"
+    githubUrl: "https://github.com/SphereOps"
   },
   {
-    name: "Kubernetes Optimizer",
-    description: "An open-source tool that analyzes and optimizes Kubernetes cluster resource usage and cost efficiency.",
-    tags: ["Python", "Kubernetes", "Cost Optimization"],
-    stars: 943,
-    forks: 127,
-    url: "#",
-    githubUrl: "#"
+    name: "Easypanel",
+    description: "A server monitoring tool for your servers with 420+ Templates. One-click install for all your projects.",
+    tags: ["TypeScript", "React", "Next.js"],
+    stars: 144,
+    forks: 123,
+    url: "https://easypanel.io",
+    githubUrl: "https://github.com/easypanel-io/templates#"
   },
   {
-    name: "IaC Template Library",
-    description: "A comprehensive collection of Infrastructure as Code templates for Terraform, CloudFormation, and Pulumi.",
-    tags: ["Terraform", "CloudFormation", "Pulumi"],
-    stars: 782,
-    forks: 214,
-    url: "#",
-    githubUrl: "#"
-  },
-  {
-    name: "CI/CD Pipeline Generator",
-    description: "A web-based tool for generating optimized CI/CD pipeline configurations for popular platforms like GitHub Actions, GitLab CI, and Jenkins.",
+    name: "OpenFood Facts",
+    description: "A collaborative, free and open database of food products from around the world. Contributing to food transparency and helping consumers make informed choices.",
     tags: ["TypeScript", "CI/CD", "DevOps"],
     stars: 651,
     forks: 103,
     url: "#",
-    githubUrl: "#"
+    githubUrl: "https://github.com/openfoodfacts"
   }
 ];
 
