@@ -92,7 +92,7 @@ const Hero = () => {
                               <img 
                                 src={
                                   provider.name === 'AWS' 
-                                    ? 'https://d1.awsstatic.com/logos/aws-logo-lockups/poweredbyaws/PB_AWS_logo_RGB_stacked_REV_SQ.91cd4af40773cbfbd15577a3c2b8a346fe3e8fa2.png' 
+                                    ? '/lovable-uploads/e5ecaba3-dd99-4ed9-817f-3e5f4d1e4a94.png' 
                                     : provider.name === 'Azure' 
                                     ? 'https://azure.microsoft.com/svghandler/azure?width=600&height=315' 
                                     : 'https://cloud.google.com/_static/cloud/images/social-icon-google-cloud-1200-630.png'
