@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
@@ -27,7 +26,7 @@ const Hero = () => {
     },
     {
       name: 'GCP',
-      image: '/static/gcphero.png',
+      image: '/lovable-uploads/64866039-0e79-4c05-ae39-ed7f7e4f261a.png',
       description: 'Google Cloud Platform expertise',
       tag: 'Scalable'
     }
