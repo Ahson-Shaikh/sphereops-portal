@@ -1,6 +1,9 @@
 
 import React, { useEffect, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { Card, CardContent } from '@/components/ui/card';
 
 const Hero = () => {
   const [loaded, setLoaded] = useState(false);
@@ -8,6 +11,27 @@ const Hero = () => {
   useEffect(() => {
     setLoaded(true);
   }, []);
+
+  const cloudProviders = [
+    {
+      name: 'AWS',
+      image: '/photo-1488590528505-98d2b5aba04b',
+      description: 'Amazon Web Services infrastructure solutions',
+      tag: 'Enterprise Ready'
+    },
+    {
+      name: 'Azure',
+      image: '/photo-1487058792275-0ad4aaf24ca7',
+      description: 'Microsoft Azure cloud solutions',
+      tag: 'High Performance'
+    },
+    {
+      name: 'GCP',
+      image: '/photo-1461749280684-dccba630e2f6',
+      description: 'Google Cloud Platform expertise',
+      tag: 'Scalable'
+    }
+  ];
 
   return (
     <section 
@@ -56,22 +80,36 @@ const Hero = () => {
           <div className={`transition-all duration-1000 delay-300 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="relative p-1 rounded-2xl bg-gradient-to-tr from-sphere-accent/20 to-sphere-lightblue/20 backdrop-blur-sm">
               <div className="bg-sphere-navy/40 rounded-xl p-6 backdrop-blur-sm">
-                <div className="aspect-video rounded-lg overflow-hidden bg-sphere-navy/50 flex items-center justify-center">
-                  <img 
-                    src="/photo-1488590528505-98d2b5aba04b" 
-                    alt="DevOps Infrastructure" 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="mt-4 flex justify-between items-start">
-                  <div>
-                    <h3 className="text-white font-medium text-lg">Cloud Infrastructure</h3>
-                    <p className="text-white/70 text-sm">Modern, resilient, scalable solutions</p>
-                  </div>
-                  <div className="px-3 py-1 bg-sphere-accent/20 text-sphere-accent rounded-full text-xs">
-                    Enterprise Grade
-                  </div>
-                </div>
+                <Carousel className="w-full">
+                  <CarouselContent>
+                    {cloudProviders.map((provider, index) => (
+                      <CarouselItem key={index}>
+                        <Card className="bg-transparent border-0">
+                          <CardContent className="p-0">
+                            <AspectRatio ratio={16/9} className="rounded-lg overflow-hidden bg-sphere-navy/50">
+                              <img 
+                                src={provider.image} 
+                                alt={`${provider.name} Cloud Infrastructure`} 
+                                className="w-full h-full object-cover"
+                              />
+                            </AspectRatio>
+                            <div className="mt-4 flex justify-between items-start">
+                              <div>
+                                <h3 className="text-white font-medium text-lg">{provider.name}</h3>
+                                <p className="text-white/70 text-sm">{provider.description}</p>
+                              </div>
+                              <div className="px-3 py-1 bg-sphere-accent/20 text-sphere-accent rounded-full text-xs">
+                                {provider.tag}
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-2 bg-sphere-lightblue/10 hover:bg-sphere-lightblue/20 text-white border-0" />
+                  <CarouselNext className="right-2 bg-sphere-lightblue/10 hover:bg-sphere-lightblue/20 text-white border-0" />
+                </Carousel>
               </div>
             </div>
           </div>
