@@ -54,6 +54,7 @@ const Footer = () => {
               {[
                 { name: 'About Us', href: '#about' },
                 { name: 'Projects', href: '#projects' },
+                { name: 'Open Source', href: '#opensource' },
                 { name: 'Book Consultation', href: '#booking' },
                 { name: 'Contact', href: '#contact' },
                 { name: 'Privacy Policy', href: '#' }

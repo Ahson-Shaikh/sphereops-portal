@@ -44,7 +44,7 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8">
-          {['Services', 'About', 'Projects', 'Contact'].map((item) => (
+          {['Services', 'About', 'Projects', 'Opensource', 'Contact'].map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
@@ -81,7 +81,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-lg p-4 flex flex-col space-y-4 animate-fade-in">
-          {['Services', 'About', 'Projects', 'Contact'].map((item) => (
+          {['Services', 'About', 'Projects', 'Opensource', 'Contact'].map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}

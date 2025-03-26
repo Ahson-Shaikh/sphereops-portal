@@ -6,6 +6,7 @@ import Services from '@/components/Services';
 import Stats from '@/components/Stats';
 import About from '@/components/About';
 import Projects from '@/components/Projects';
+import OpenSource from '@/components/OpenSource';
 import BookingForm from '@/components/BookingForm';
 import ContactInfo from '@/components/ContactInfo';
 import Footer from '@/components/Footer';
@@ -23,6 +24,7 @@ const Index = () => {
       <Stats />
       <About />
       <Projects />
+      <OpenSource />
       <BookingForm />
       <ContactInfo />
       <Footer />
