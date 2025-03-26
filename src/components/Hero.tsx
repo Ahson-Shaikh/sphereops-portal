@@ -15,19 +15,16 @@ const Hero = () => {
   const cloudProviders = [
     {
       name: 'AWS',
-      image: '/public/static/awshero.png',
       description: 'Amazon Web Services infrastructure solutions',
       tag: 'Enterprise Ready'
     },
     {
       name: 'Azure',
-      image: '/public/static/azurehero.png',
       description: 'Microsoft Azure cloud solutions',
       tag: 'High Performance'
     },
     {
       name: 'GCP',
-      image: '/public/static/gcphero.png',
       description: 'Google Cloud Platform expertise',
       tag: 'Scalable'
     }
@@ -35,7 +32,7 @@ const Hero = () => {
 
   // Add console log to debug image paths
   useEffect(() => {
-    console.log("Cloud provider images:", cloudProviders.map(provider => provider.image));
+    console.log("Cloud providers:", cloudProviders);
   }, []);
 
   return (
@@ -93,14 +90,25 @@ const Hero = () => {
                           <CardContent className="p-0">
                             <AspectRatio ratio={16/9} className="rounded-lg overflow-hidden bg-sphere-navy/50">
                               <img 
-                                src={provider.name === 'AWS' ? 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=1600&q=80' : 
-                                     provider.name === 'Azure' ? 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80' : 
-                                     'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1600&q=80'}
+                                src={
+                                  provider.name === 'AWS' 
+                                    ? 'https://d1.awsstatic.com/logos/aws-logo-lockups/poweredbyaws/PB_AWS_logo_RGB_stacked_REV_SQ.91cd4af40773cbfbd15577a3c2b8a346fe3e8fa2.png' 
+                                    : provider.name === 'Azure' 
+                                    ? 'https://azure.microsoft.com/svghandler/azure?width=600&height=315' 
+                                    : 'https://cloud.google.com/_static/cloud/images/social-icon-google-cloud-1200-630.png'
+                                }
                                 alt={`${provider.name} Cloud Infrastructure`} 
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-contain bg-white/10 backdrop-blur-sm p-4"
                                 onError={(e) => {
-                                  console.error(`Error loading image: ${provider.image}`);
-                                  e.currentTarget.src = 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1600&q=80';
+                                  console.error(`Error loading image for ${provider.name}`);
+                                  // Fallback images specific to each cloud provider
+                                  if (provider.name === 'AWS') {
+                                    e.currentTarget.src = 'https://d1.awsstatic.com/logos/aws-logo-lockups/poweredbyaws/PB_AWS_logo_RGB.d92cd7c37a4796f8b4dbcb913cbdb1bcf9a65a78.png';
+                                  } else if (provider.name === 'Azure') {
+                                    e.currentTarget.src = 'https://arunpotti.files.wordpress.com/2021/12/microsoft_azure.svg_.png';
+                                  } else {
+                                    e.currentTarget.src = 'https://lh3.googleusercontent.com/dYoQ0S8IYQsfYJZpZvWYl9yMF6TMqzq7HCT7QF7zc2wdBN8jgYBXvmJQhLGrKTRQzi0jzYuUvA4Kaw0IMzB48Af7RQoQYQo3VCHE=w2000-h1270-rw';
+                                  }
                                 }}
                               />
                             </AspectRatio>
