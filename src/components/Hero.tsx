@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
@@ -31,6 +32,11 @@ const Hero = () => {
       tag: 'Scalable'
     }
   ];
+
+  // Add console log to debug image paths
+  useEffect(() => {
+    console.log("Cloud provider images:", cloudProviders.map(provider => provider.image));
+  }, []);
 
   return (
     <section 
@@ -90,6 +96,10 @@ const Hero = () => {
                                 src={provider.image} 
                                 alt={`${provider.name} Cloud Infrastructure`} 
                                 className="w-full h-full object-cover"
+                                onError={(e) => {
+                                  console.error(`Error loading image: ${provider.image}`);
+                                  e.currentTarget.src = 'https://via.placeholder.com/640x360?text=Image+Not+Found';
+                                }}
                               />
                             </AspectRatio>
                             <div className="mt-4 flex justify-between items-start">
