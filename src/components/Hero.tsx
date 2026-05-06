@@ -16,24 +16,22 @@ const Hero = () => {
     {
       name: 'AWS',
       description: 'Amazon Web Services infrastructure solutions',
-      tag: 'Enterprise Ready'
+      tag: 'Enterprise Ready',
+      image: '/cloud/aws.svg'
     },
     {
       name: 'Azure',
       description: 'Microsoft Azure cloud solutions',
-      tag: 'High Performance'
+      tag: 'High Performance',
+      image: '/cloud/azure.svg'
     },
     {
       name: 'GCP',
       description: 'Google Cloud Platform expertise',
-      tag: 'Scalable'
+      tag: 'Scalable',
+      image: '/cloud/gcp.svg'
     }
   ];
-
-  // Add console log to debug image paths
-  useEffect(() => {
-    console.log("Cloud providers:", cloudProviders);
-  }, []);
 
   return (
     <section 
@@ -90,26 +88,9 @@ const Hero = () => {
                           <CardContent className="p-0">
                             <AspectRatio ratio={16/9} className="rounded-lg overflow-hidden bg-sphere-navy/50">
                               <img 
-                                src={
-                                  provider.name === 'AWS' 
-                                    ? 'https://wallpapers.com/images/hd/amazon-background-qmgdstx8t37z579o.jpg' 
-                                    : provider.name === 'Azure' 
-                                    ? 'https://azure.microsoft.com/svghandler/azure?width=600&height=315' 
-                                    : 'https://cloud.google.com/_static/cloud/images/social-icon-google-cloud-1200-630.png'
-                                }
+                                src={provider.image}
                                 alt={`${provider.name} Cloud Infrastructure`} 
                                 className="w-full h-full object-contain bg-white/10 backdrop-blur-sm p-4"
-                                onError={(e) => {
-                                  console.error(`Error loading image for ${provider.name}`);
-                                  // Fallback images specific to each cloud provider
-                                  if (provider.name === 'AWS') {
-                                    e.currentTarget.src = 'https://d1.awsstatic.com/logos/aws-logo-lockups/poweredbyaws/PB_AWS_logo_RGB.d92cd7c37a4796f8b4dbcb913cbdb1bcf9a65a78.png';
-                                  } else if (provider.name === 'Azure') {
-                                    e.currentTarget.src = 'https://arunpotti.files.wordpress.com/2021/12/microsoft_azure.svg_.png';
-                                  } else {
-                                    e.currentTarget.src = 'https://lh3.googleusercontent.com/dYoQ0S8IYQsfYJZpZvWYl9yMF6TMqzq7HCT7QF7zc2wdBN8jgYBXvmJQhLGrKTRQzi0jzYuUvA4Kaw0IMzB48Af7RQoQYQo3VCHE=w2000-h1270-rw';
-                                  }
-                                }}
                               />
                             </AspectRatio>
                             <div className="mt-4 flex justify-between items-start">

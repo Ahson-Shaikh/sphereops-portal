@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Azure">
+  <defs>
+    <linearGradient id="azure-bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0078d4"/>
+      <stop offset="100%" stop-color="#004578"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#azure-bg)"/>
+  <polygon points="290,325 390,95 550,325" fill="#cfe8ff"/>
+  <polygon points="370,325 450,190 540,325" fill="#7fc4ff"/>
+  <text x="160" y="325" fill="#ffffff" font-size="80" font-family="Inter, Arial, sans-serif" font-weight="700">Azure</text>
+</svg>
