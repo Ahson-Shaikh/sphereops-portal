@@ -13,8 +13,8 @@ const Footer = () => {
               <span className="text-sphere-accent">Sphere</span>Ops
             </div>
             <p className="text-white/70 mb-4 max-w-md">
-              SphereOps provides premier DevOps consultancy services to businesses worldwide, 
-              optimizing cloud infrastructure and streamlining development processes.
+              SphereOps provides outsourced DevOps engineers, IT support, and AI automation services
+              to help teams ship faster and run reliable infrastructure.
             </p>
             <div className="flex space-x-4">
               {['Twitter', 'LinkedIn', 'GitHub', 'Medium'].map((platform, index) => (
@@ -33,11 +33,11 @@ const Footer = () => {
             <h3 className="text-lg font-medium mb-4">Services</h3>
             <ul className="space-y-2">
               {[
-                'Cloud Infrastructure', 
-                'CI/CD Implementation', 
-                'Infrastructure as Code', 
-                'Security Optimization', 
-                'Performance Monitoring'
+                'DevOps Services',
+                'Web-Application Development',
+                'Portfolio Build-Ups',
+                'Outsourced Engineers and Hiring',
+                'AWS/Azure Training'
               ].map((service, index) => (
                 <li key={index}>
                   <a href="#services" className="text-white/70 hover:text-sphere-accent transition-colors">
@@ -53,8 +53,10 @@ const Footer = () => {
             <ul className="space-y-2">
               {[
                 { name: 'About Us', href: '#about' },
+                { name: 'Tools', href: '#tools' },
                 { name: 'Projects', href: '#projects' },
                 { name: 'Open Source', href: '#opensource' },
+                { name: 'Pricing', href: '#pricing' },
                 { name: 'Book Consultation', href: '#booking' },
                 { name: 'Contact', href: '#contact' },
                 { name: 'Privacy Policy', href: '#' }

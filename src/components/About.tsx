@@ -3,12 +3,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import { CheckCircle } from 'lucide-react';
 
 const achievements = [
-  "Reduced cloud costs by up to 40% for enterprise clients",
-  "Decreased deployment time from days to minutes",
-  "Implemented zero-downtime deployment strategies",
-  "Enhanced security posture for financial institutions",
-  "Optimized global infrastructure for multinational corporations",
-  "Achieved 99.99% uptime for critical applications"
+  "Flexible L1/L2/L3 engineer augmentation model",
+  "Proactive IT support and incident response operations",
+  "Cloud and DevOps implementation across AWS, Azure, and GCP",
+  "Agentic AI workflows for repetitive support tasks",
+  "Automation-first approach for scalable delivery",
+  "Clear communication, handover documentation, and accountability"
 ];
 
 const About = () => {
@@ -53,7 +53,7 @@ const About = () => {
             <div className="relative">
               <div className="absolute -top-6 -left-6 w-24 h-24 bg-sphere-accent/10 rounded-lg"></div>
               <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-sphere-accent/10 rounded-lg"></div>
-              <div className="relative z-10 rounded-lg overflow-hidden">
+              <div className="relative z-10 rounded-2xl overflow-hidden shadow-xl">
                 <img 
                   src="/lovable-uploads/b1d275fe-ebda-4cb8-9354-e598d98a5213.png" 
                   alt="Ahson Shaikh, CEO of SphereOps" 
@@ -69,21 +69,27 @@ const About = () => {
             }`}
           >
             <span className="inline-block px-3 py-1 text-xs font-medium text-sphere-accent bg-sphere-accent/10 rounded-full mb-4">
-              About Us
+              Why SphereOps
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-sphere-navy mb-4">
-              Transforming Infrastructure, Enabling Innovation
+              Your Extended Platform and Automation Team
             </h2>
             <p className="text-sphere-gray mb-6">
-              Founded by Ahson Shaikh, SphereOps is a premier DevOps consultancy dedicated to 
-              helping businesses optimize their infrastructure, streamline deployment pipelines, 
-              and enhance operational efficiency.
+              SphereOps helps growing teams outsource critical DevOps and IT support work without
+              sacrificing quality, velocity, or security.
             </p>
             <p className="text-sphere-gray mb-6">
-              With extensive experience across cloud platforms and DevOps tools, our team delivers 
-              customized solutions that enable our clients to focus on innovation while we handle 
-              the complexity of their infrastructure.
+              Beyond infrastructure operations, we build AI-powered and agentic automations that reduce
+              repetitive tasks, improve response times, and free your team to focus on high-impact work.
             </p>
+            <div className="rounded-xl overflow-hidden mb-6 border border-slate-200">
+              <img
+                src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80"
+                alt="SphereOps team collaboration"
+                className="w-full h-48 object-cover"
+                loading="lazy"
+              />
+            </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
               {achievements.map((item, index) => (

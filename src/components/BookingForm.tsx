@@ -1,13 +1,13 @@
-import React, { useState, useRef } from 'react';
-import { CalendarIcon, Clock, Info } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { CalendarIcon, Clock, Info, ShieldCheck } from 'lucide-react';
 import { toast } from 'sonner';
-import emailjs from '@emailjs/browser';
-import { EMAILJS_CONFIG } from '@/lib/emailjs';
+import { sendConsultationRequest } from '@/lib/emailjs';
 
 const timeSlots = [
   '9:00 AM', '10:00 AM', '11:00 AM', 
   '1:00 PM', '2:00 PM', '3:00 PM', '4:00 PM'
 ];
+const fallbackRecipients = ['support@sphereops.org', 'ahson.shaikh@sphereops.org'];
 
 const BookingForm = () => {
   const [name, setName] = useState('');
@@ -17,42 +17,64 @@ const BookingForm = () => {
   const [time, setTime] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
-  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const minDate = useMemo(() => new Date().toISOString().split('T')[0], []);
+
+  const openFallbackEmail = () => {
+    const subject = encodeURIComponent('Consultation Request from SphereOps Website');
+    const body = encodeURIComponent(
+      [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        `Company: ${company}`,
+        `Preferred Date: ${date}`,
+        `Preferred Time: ${time}`,
+        '',
+        'Requirements:',
+        message || 'N/A',
+      ].join('\n')
+    );
+    window.location.href = `mailto:${fallbackRecipients.join(',')}?subject=${subject}&body=${body}`;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!date || new Date(`${date}T00:00:00`) < new Date(`${minDate}T00:00:00`)) {
+      toast.error('Please select a valid date.');
+      return;
+    }
+
     setLoading(true);
-    
-    if (formRef.current) {
-      // Send email using EmailJS
-      emailjs.sendForm(
-        EMAILJS_CONFIG.serviceId,
-        EMAILJS_CONFIG.templateId,
-        formRef.current,
-        undefined // Public key is already initialized in the initEmailJS function
-      )
-        .then((result) => {
-          console.log('Email successfully sent!', result.text);
-          toast.success('Consultation request submitted successfully! We\'ll contact you shortly.');
-          setName('');
-          setEmail('');
-          setCompany('');
-          setDate('');
-          setTime('');
-          setMessage('');
-        })
-        .catch((error) => {
-          console.error('Failed to send email:', error.text);
-          toast.error('Something went wrong. Please try again or contact us directly.');
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+
+    try {
+      await sendConsultationRequest({
+        name,
+        email,
+        company,
+        date,
+        time,
+        message,
+      });
+
+      toast.success("Consultation request submitted. We'll contact you shortly.");
+      setName('');
+      setEmail('');
+      setCompany('');
+      setDate('');
+      setTime('');
+      setMessage('');
+    } catch (error) {
+      console.error('Failed to send consultation request:', error);
+      toast.error('Unable to send automatically. Opening your email app as backup.');
+      openFallbackEmail();
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <section id="booking" className="py-24 bg-white">
+    <section id="booking" className="py-24 bg-gradient-to-b from-white to-slate-100">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -61,11 +83,11 @@ const BookingForm = () => {
                 Book a Consultation
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-sphere-navy mb-4">
-                Schedule Time with Our DevOps Expert
+                Schedule a Paid Strategy Call
               </h2>
               <p className="text-sphere-gray mb-8">
-                Discuss your infrastructure challenges with Ahson Shaikh, our founder and lead consultant. 
-                Get personalized insights on how SphereOps can optimize your DevOps processes.
+                Discuss your DevOps staffing, IT support model, AI automation roadmap, and infrastructure priorities.
+                Each consultation is a focused 30-minute paid session.
               </p>
               
               <div className="bg-sphere-lightgray rounded-xl p-6 mb-8">
@@ -99,23 +121,30 @@ const BookingForm = () => {
                 <div className="flex items-start gap-3">
                   <Clock className="w-5 h-5 text-sphere-accent mt-0.5" />
                   <div>
-                    <h4 className="font-medium text-sphere-navy">45-Minute Session</h4>
-                    <p className="text-sm text-sphere-gray">In-depth discussion about your infrastructure needs</p>
+                    <h4 className="font-medium text-sphere-navy">30-Minute Session</h4>
+                    <p className="text-sm text-sphere-gray">$49 per consultation call</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Info className="w-5 h-5 text-sphere-accent mt-0.5" />
                   <div>
-                    <h4 className="font-medium text-sphere-navy">No Obligation</h4>
-                    <p className="text-sm text-sphere-gray">Get valuable insights whether you engage our services or not</p>
+                    <h4 className="font-medium text-sphere-navy">Actionable Guidance</h4>
+                    <p className="text-sm text-sphere-gray">Receive practical recommendations you can execute immediately</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <ShieldCheck className="w-5 h-5 text-sphere-accent mt-0.5" />
+                  <div>
+                    <h4 className="font-medium text-sphere-navy">Reliable Request Delivery</h4>
+                    <p className="text-sm text-sphere-gray">If online submission fails, we automatically trigger a direct email fallback</p>
                   </div>
                 </div>
               </div>
             </div>
             
-            <div className="bg-white shadow-lg rounded-xl p-6 md:p-8">
+            <div className="bg-white/95 backdrop-blur-sm shadow-xl rounded-2xl p-6 md:p-8 border border-slate-200">
               <h3 className="text-xl font-semibold text-sphere-navy mb-6">Request Your Consultation</h3>
-              <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-sphere-navy mb-1">Full Name</label>
                   <input
@@ -168,6 +197,7 @@ const BookingForm = () => {
                       value={date}
                       onChange={(e) => setDate(e.target.value)}
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sphere-accent"
+                      min={minDate}
                       required
                     />
                   </div>
@@ -203,7 +233,7 @@ const BookingForm = () => {
                   ></textarea>
                 </div>
                 
-                <input type="hidden" name="to_email" value="contact@sphereops.org" />
+                <input type="hidden" name="to_email" value={fallbackRecipients.join(',')} />
                 <input type="hidden" name="subject" value="Consultation Request from SphereOps Website" />
                 
                 <button

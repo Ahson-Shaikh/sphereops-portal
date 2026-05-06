@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Infrastructure as code project">
+  <defs>
+    <linearGradient id="grad4" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#312e81"/>
+      <stop offset="100%" stop-color="#1f1b5f"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#grad4)"/>
+  <rect x="180" y="120" width="440" height="220" rx="18" fill="#c7d2fe"/>
+  <rect x="210" y="160" width="380" height="24" rx="8" fill="#4338ca"/>
+  <rect x="210" y="200" width="250" height="18" rx="8" fill="#6366f1"/>
+  <rect x="210" y="232" width="300" height="18" rx="8" fill="#6366f1"/>
+  <rect x="210" y="264" width="220" height="18" rx="8" fill="#6366f1"/>
+  <text x="400" y="375" fill="#ffffff" font-size="40" text-anchor="middle" font-family="Inter, Arial, sans-serif">Infrastructure as Code</text>
+</svg>
