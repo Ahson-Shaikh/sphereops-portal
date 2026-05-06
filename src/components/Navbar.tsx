@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from "@/lib/utils";
+import { BrandLogo } from "@/components/BrandLogo";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -33,13 +34,15 @@ const Navbar = () => {
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <a href="#top" className="flex items-center space-x-2">
-          <span className={cn(
-            "text-2xl font-semibold transition-colors",
-            scrolled ? "text-sphere-navy" : "text-white"
-          )}>
-            <span className="text-sphere-accent">Sphere</span>Ops
-          </span>
+        <a href="#top" className="flex items-center gap-2 shrink-0" aria-label="SphereOps home">
+          <BrandLogo
+            variant={scrolled ? "default" : "onDark"}
+            heightClass="h-9 md:h-10"
+            className={cn(
+              "transition-opacity duration-300",
+              scrolled ? "" : "drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)]"
+            )}
+          />
         </a>
 
         {/* Desktop Navigation */}

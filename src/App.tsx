@@ -5,17 +5,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import { useEffect } from "react";
-import { initEmailJS } from "@/lib/emailjs";
 
 const queryClient = new QueryClient();
 
 const App = () => {
-  useEffect(() => {
-    // Initialize EmailJS when the app loads
-    initEmailJS();
-  }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>

@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { BrandLogo } from '@/components/BrandLogo';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -9,8 +10,8 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div className="md:col-span-2">
-            <div className="text-2xl font-semibold mb-4">
-              <span className="text-sphere-accent">Sphere</span>Ops
+            <div className="mb-4">
+              <BrandLogo variant="onDark" heightClass="h-10 md:h-11" />
             </div>
             <p className="text-white/70 mb-4 max-w-md">
               SphereOps provides outsourced DevOps engineers, IT support, and AI automation services

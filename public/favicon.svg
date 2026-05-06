@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" role="img" aria-label="SphereOps">
+  <defs>
+    <clipPath id="fav-clip"><circle cx="22" cy="22" r="20"/></clipPath>
+  </defs>
+  <g clip-path="url(#fav-clip)">
+    <circle cx="22" cy="22" r="22" fill="#0f172a" opacity="0.2"/>
+    <ellipse cx="16" cy="22" rx="18" ry="22" fill="#14b8a6" transform="rotate(-12 16 22)"/>
+    <ellipse cx="28" cy="26" rx="16" ry="20" fill="#38bdf8" opacity="0.92" transform="rotate(8 28 26)"/>
+    <ellipse cx="24" cy="14" rx="9" ry="11" fill="#0f172a"/>
+  </g>
+  <circle cx="22" cy="22" r="20" fill="none" stroke="rgba(15,23,42,0.15)" stroke-width="1"/>
+</svg>
