@@ -65,8 +65,8 @@ const BookingForm = () => {
                 <div className="flex items-start gap-3">
                   <Clock className="w-5 h-5 text-sphere-accent mt-0.5" />
                   <div>
-                    <h4 className="font-medium text-sphere-navy">30-minute consultation</h4>
-                    <p className="text-sm text-sphere-gray">$49 per consultation call (mentioned in your email)</p>
+                    <h4 className="font-medium text-sphere-navy">1-hour consultation</h4>
+                    <p className="text-sm text-sphere-gray">$50/hour (mentioned in your email)</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">

@@ -59,6 +59,19 @@ const services = [
   }
 ];
 
+const aiServiceTypes = [
+  'Voice AI Agents (taking real actions over phone calls)',
+  'AI Lead Generation Systems',
+  'AI Customer Support Copilots',
+  'RAG Knowledge Base Assistants',
+  'AI Outreach and Email Sequencing',
+  'AI Call QA and Conversation Intelligence',
+  'AI Workflow Orchestration Agents',
+  'AI Proposal and RFP Automation',
+  'AI Forecasting and Decision Intelligence',
+  'Custom AI Product Prototyping',
+];
+
 const Services = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -133,6 +146,22 @@ const Services = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-14 rounded-3xl border border-cyan-200/40 bg-white p-8 shadow-[0_12px_34px_rgba(30,58,138,0.12)]">
+          <div className="max-w-3xl mb-8">
+            <h3 className="text-2xl md:text-3xl font-bold text-sphere-navy mb-3">AI Services We Build</h3>
+            <p className="text-sphere-gray">
+              From voice automation to revenue operations, we design production-ready AI systems mapped to measurable business outcomes.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {aiServiceTypes.map((item) => (
+              <div key={item} className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-sphere-navy font-medium">
+                {item}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

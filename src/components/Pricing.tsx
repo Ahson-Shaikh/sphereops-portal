@@ -1,35 +1,50 @@
 import React, { useMemo, useState } from 'react';
 import { Bot, BriefcaseBusiness, MessageSquareText } from 'lucide-react';
 
-type PricingOption = 'devops-hiring' | 'consultation' | 'ai-voice';
+type PricingOption = 'devops-hiring' | 'consultation' | 'ai-services';
+type BillingMode = 'hourly' | 'monthly';
+
+type PricingCard = {
+  tier: string;
+  price?: string;
+  hourlyRate?: number;
+  accent: string;
+  description: string;
+  points: string[];
+};
+
+const MONTHLY_HOURS = 160;
+const MONTHLY_DISCOUNT = 0.25;
+
+const formatCurrency = (amount: number) => `$${amount.toLocaleString('en-US')}`;
 
 const pricingCatalog = {
   'devops-hiring': {
-    label: 'Hire DevOps Engineers (Per Hour)',
+    label: 'Hire DevOps Engineers',
     icon: BriefcaseBusiness,
     cards: [
       {
         tier: 'L1 DevOps Engineer',
-        price: '$25/hour',
+        hourlyRate: 25,
         accent: 'from-cyan-400 to-blue-500',
         description: 'Great for day-to-day operations, first-line support, and routine DevOps execution.',
         points: ['Monitoring and alert handling', 'Ticket triage and response', 'Runbook-based operations ownership']
       },
       {
         tier: 'L2 DevOps Engineer',
-        price: '$35/hour',
+        hourlyRate: 35,
         accent: 'from-indigo-400 to-blue-600',
         description: 'Best for teams that need deeper troubleshooting and stronger deployment confidence.',
         points: ['Incident debugging and recovery', 'CI/CD and release support', 'Cloud performance optimization']
       },
       {
         tier: 'Senior DevOps Engineer',
-        price: '$45/hour',
+        hourlyRate: 45,
         accent: 'from-fuchsia-400 to-violet-600',
         description: 'Ideal for advanced architecture, scaling strategy, and high-impact engineering leadership.',
         points: ['Platform architecture design', 'Reliability and security direction', 'Critical escalations and ownership']
       }
-    ]
+    ] as PricingCard[]
   },
   consultation: {
     label: 'Consultation Calls',
@@ -37,34 +52,35 @@ const pricingCatalog = {
     cards: [
       {
         tier: 'Consultation Session',
-        price: '$49 / 30-minute call',
+        price: '$50/hour',
         accent: 'from-emerald-400 to-cyan-500',
         description: 'Focused consulting session for architecture, migration, incident planning, and staffing guidance.',
-        points: ['Structured 30-minute format', 'Actionable recommendations', 'Clear next-step plan after the call']
+        points: ['Structured 60-minute format', 'Actionable recommendations', 'Clear next-step plan after the call']
       }
-    ]
+    ] as PricingCard[]
   },
-  'ai-voice': {
-    label: 'AI Voice Call Attendant (Per Month)',
+  'ai-services': {
+    label: 'AI Agent Setup and Support',
     icon: Bot,
     cards: [
       {
-        tier: 'AI Voice Attendant Support',
-        price: '$99/month',
+        tier: 'AI Agent Pricing',
+        price: '$499 setup + $59/month',
         accent: 'from-amber-400 to-orange-500',
-        description: 'Monthly support plan for AI voice attendants that can take real actions.',
+        description: 'Transparent pricing for launching and maintaining AI agents in production.',
         points: [
-          'Monthly support and optimization',
-          'Operational troubleshooting and QA',
-          'LLM API, voice, transcriber, STT, and TTS costs are billed separately by third-party providers'
+          '$499 one-time setup fee',
+          '$59/month recurring support and maintenance',
+          'Covers updates, monitoring, and operational assistance'
         ]
       }
-    ]
+    ] as PricingCard[]
   }
 } as const;
 
 const Pricing = () => {
   const [selectedService, setSelectedService] = useState<PricingOption>('devops-hiring');
+  const [billingMode, setBillingMode] = useState<BillingMode>('hourly');
   const selectedPricing = useMemo(() => pricingCatalog[selectedService], [selectedService]);
   const Icon = selectedPricing.icon;
 
@@ -109,7 +125,35 @@ const Pricing = () => {
           <span className="font-medium">{selectedPricing.label}</span>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 relative z-10">
+        {selectedService === 'devops-hiring' && (
+          <div className="relative z-10 mb-6">
+            <div className="inline-flex rounded-full border border-cyan-200/30 bg-slate-900/70 p-1">
+              <button
+                type="button"
+                onClick={() => setBillingMode('hourly')}
+                className={`px-4 py-2 text-sm rounded-full transition-colors ${
+                  billingMode === 'hourly' ? 'bg-cyan-400 text-slate-900 font-semibold' : 'text-cyan-100'
+                }`}
+              >
+                Hourly
+              </button>
+              <button
+                type="button"
+                onClick={() => setBillingMode('monthly')}
+                className={`px-4 py-2 text-sm rounded-full transition-colors ${
+                  billingMode === 'monthly' ? 'bg-cyan-400 text-slate-900 font-semibold' : 'text-cyan-100'
+                }`}
+              >
+                Monthly (25% off)
+              </button>
+            </div>
+            <p className="text-xs text-cyan-100/80 mt-2">
+              Monthly pricing is based on {MONTHLY_HOURS} hours/engineer with a {MONTHLY_DISCOUNT * 100}% discount.
+            </p>
+          </div>
+        )}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 relative z-10">
           {selectedPricing.cards.map((plan) => (
             <div
               key={plan.tier}
@@ -122,13 +166,23 @@ const Pricing = () => {
                     <BriefcaseBusiness className="w-5 h-5 text-sphere-blue" />
                     <span className="text-sm font-semibold tracking-wide">{plan.tier}</span>
                   </div>
-                  <span className={`text-[10px] uppercase tracking-wider px-2 py-1 rounded-full bg-gradient-to-r ${plan.accent} text-slate-950 font-semibold shadow-sm`}>
-                    Recommended
-                  </span>
                 </div>
                 <div className="text-3xl font-extrabold text-slate-900 mb-2">
-                  {plan.price}
+                  {selectedService === 'devops-hiring' && plan.hourlyRate ? (
+                    billingMode === 'hourly' ? (
+                      `${formatCurrency(plan.hourlyRate)}/hour`
+                    ) : (
+                      `${formatCurrency(plan.hourlyRate * MONTHLY_HOURS * (1 - MONTHLY_DISCOUNT))}/month`
+                    )
+                  ) : (
+                    plan.price
+                  )}
                 </div>
+                {selectedService === 'devops-hiring' && plan.hourlyRate && billingMode === 'monthly' && (
+                  <p className="text-xs text-slate-500 mb-2">
+                    Standard monthly total: {formatCurrency(plan.hourlyRate * MONTHLY_HOURS)}/month
+                  </p>
+                )}
                 <p className="text-sm text-slate-700 mb-4 leading-relaxed">{plan.description}</p>
                 <ul className="space-y-2 text-sm text-slate-700">
                   {plan.points.map((item) => (

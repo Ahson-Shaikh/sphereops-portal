@@ -10,6 +10,8 @@ import Projects from '@/components/Projects';
 import OpenSource from '@/components/OpenSource';
 import Pricing from '@/components/Pricing';
 import BookingForm from '@/components/BookingForm';
+import EngagementPathway from '@/components/EngagementPathway';
+import Testimonials from '@/components/Testimonials';
 import ContactInfo from '@/components/ContactInfo';
 import Footer from '@/components/Footer';
 
@@ -30,6 +32,8 @@ const Index = () => {
       <OpenSource />
       <Pricing />
       <BookingForm />
+      <EngagementPathway />
+      <Testimonials />
       <ContactInfo />
       <Footer />
     </div>
